@@ -1,4 +1,4 @@
-name: Kernel Builder (Perfline+)
+name: Kernel Builder (E404)
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Clone Kernel Source
         run: |
-          git clone https://github.com/Olzhas-Kdyr/kernel_xiaomi_sm8250 -b aosp-16-rksu ${{ github.workspace }}/kernel_xiaomi_sm8250 --depth=1
+          git clone https://github.com/Olzhas-Kdyr/kernel_xiaomi_sm8250 -b e404bpf ${{ github.workspace }}/kernel_xiaomi_sm8250 --depth=1
 
       - name: Install Dependencies
         run: |
@@ -23,8 +23,9 @@ jobs:
         run: |
           cd kernel_xiaomi_sm8250
           git submodule update --init
-          chmod +x build.sh
-          ./build.sh
+          chmod +x compile.sh
+          ./compile.sh vendor/munch_defconfig
+          ./compile.sh
         env:
           TGTOKEN: ${{ secrets.TGTOKEN }}
           
