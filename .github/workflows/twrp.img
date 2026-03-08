@@ -1,0 +1,35 @@
+name: TWRP Builder
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Install repo
+        run: | 
+          mkdir -p ~/bin && export PATH=~/bin:$PATH && curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo
+          git clone https://github.com/olzhas0986/Gitcompiler
+          cd Gitcompiler
+
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update && sudo apt install gawk anderson build-essential bc bison ca-certificates \
+ccache curl flex g++-multilib gcc-multilib git gnupg gperf \
+imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev \
+liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev \
+libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools \
+xsltproc zip zlib1g-dev python3
+
+- name: Build
+        run: |
+          chmod +x build.sh
+          ./build.sh
+        env:
+          TGTOKEN: ${{ secrets.TGTOKEN }}
+          
