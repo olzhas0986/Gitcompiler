@@ -24,5 +24,16 @@ jobs:
           mkdir -p ~/bin && export PATH=~/bin:$PATH && curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo
           chmod +x build.sh
           ./build.sh
+
+      
+      - name: Upload to Release
         env:
-          TGTOKEN: ${{ secrets.TGTOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd twrp
+          tag_name="twrp-munch-$(date +%Y%m%d-%H%M)"
+          gh release create "$tag_name" \
+          out/target/product/munch/boot.img \
+          --title "TWRP for POCO F4 (munch) - Build $tag_name" \
+          --notes "The building was completed through GitHub Actions."
+        
