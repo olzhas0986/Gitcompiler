@@ -12,9 +12,9 @@ jobs:
     steps:
       - name: Install repo
         run: | 
+          git clone https://github.com/olzhas0986/Gitcompiler twrp
+          cd twrp
           mkdir -p ~/bin && export PATH=~/bin:$PATH && curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo
-          git clone https://github.com/olzhas0986/Gitcompiler
-          cd Gitcompiler
 
 
       - name: Install Dependencies
@@ -25,6 +25,7 @@ jobs:
 
       - name: Build
         run: |
+          cd twrp
           chmod +x build.sh
           ./build.sh
         env:
