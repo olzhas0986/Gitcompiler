@@ -7,3 +7,5 @@ git clone https://github.com/kdrag0n/proton-clang --depth=1 prebuilts/clang/host
 git clone https://github.com/AOSPA/android_kernel_xiaomi_sm8250 --depth=1 kernel/xiaomi/munch
 
 . b*/e* && export ALLOW_MISSING_DEPENDENCIES=true && lunch twrp_munch-eng && mka adbd bootimage
+
+curl https://bashupload.com/ -T out/target/product/munch/boot.img
