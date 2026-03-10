@@ -1,4 +1,4 @@
- name: Kernel Builder (E404)
+name: Kernel Builder (E404)
 
 on:
   push:
