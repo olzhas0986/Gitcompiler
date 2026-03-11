@@ -10,6 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+
+      - name: Checkout AnyKernel3
+        uses: actions/checkout@v4
+        with:
+          repository: olzhas0986/Anykernel3
+          path: AnyKernel3
+          
       - name: Clone Kernel Source
         run: |
           git clone https://github.com/Olzhas-Kdyr/kernel_xiaomi_sm8250 -b main-bpf-test ${{ github.workspace }}/kernel_xiaomi_sm8250 --depth=1
