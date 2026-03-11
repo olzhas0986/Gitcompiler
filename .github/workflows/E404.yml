@@ -12,12 +12,6 @@ jobs:
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v4
-
-      - name: Checkout AnyKernel3
-        uses: actions/checkout@v4
-        with:
-          repository: olzhas0986/Anykernel3
-          path: AnyKernel3
           
       - name: Clone Kernel Source
         run: |
@@ -27,6 +21,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y flex bc bison gcc gcc-aarch64-linux-gnu ccache p7zip-full lld
+
+      - name: Checkout AnyKernel3
+        uses: actions/checkout@v4
+        with:
+          repository: olzhas0986/Anykernel3
+          path: kernel_xiaomi_sm8250/AnyKernel3
 
       - name: Clone AOSP Clang && Build Kernel
         run: |
