@@ -21,7 +21,7 @@ jobs:
           
       - name: Clone Kernel Source
         run: |
-          git clone https://github.com/Olzhas-Kdyr/kernel_xiaomi_sm8250 -b main-bpf-test ${{ github.workspace }}/kernel_xiaomi_sm8250 --depth=1
+          git clone https://github.com/Olzhas-Kdyr/kernel_xiaomi_sm8250 ${{ github.workspace }}/kernel_xiaomi_sm8250 --depth=1
 
       - name: Install Dependencies
         run: |
