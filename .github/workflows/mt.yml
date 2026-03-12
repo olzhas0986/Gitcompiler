@@ -1,0 +1,30 @@
+name: Kernel Builder (MagicTime)
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Clone Kernel Source
+        run: |
+          git clone https://github.com/Olzhas-Kdyr/magictime_sm8250_ximi ${{ github.workspace }}/magictime_sm8250_ximi --depth=1
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y flex bc bison gcc gcc-aarch64-linux-gnu ccache p7zip-full lld cpio python-is-python3
+
+      - name: Clone Clang && Build Kernel
+        run: |
+          cd magictime_sm8250_ximi
+          git submodule update --init
+          chmod +x build.sh
+          ./build.sh
+        env:
+          TGTOKEN: ${{ secrets.TGTOKEN }}
+          
