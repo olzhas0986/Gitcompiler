@@ -17,7 +17,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y flex bc bison gcc gcc-aarch64-linux-gnu ccache p7zip-full lld cpio python-is-python3 llvm
+          sudo apt-get install -y flex bc bison gcc gcc-aarch64-linux-gnu ccache p7zip-full lld cpio python-is-python3
 
       - name: Clone Clang && Build Kernel
         run: |
