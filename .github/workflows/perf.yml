@@ -1,0 +1,30 @@
+name: Kernel Builder (perf)
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Clone Kernel Source
+        run: |
+          git clone https://github.com/olzhas0986/magictime_sm8250_ximi -b perf ${{ github.workspace }}/kernel_xiaomi_sm8250 --depth=1
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y flex bc bison gcc gcc-aarch64-linux-gnu ccache p7zip-full lld cpio python-is-python3
+
+      - name: Clone Clang && Build Kernel
+        run: |
+          cd kernel_xiaomi_sm8250
+          git submodule update --init
+          chmod +x build.sh
+          ./build.sh
+        env:
+          TGTOKEN: ${{ secrets.TGTOKEN }}
+          
