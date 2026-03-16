@@ -122,8 +122,8 @@ jobs:
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
         set -e
-        export FOX_BUILD_FULL_KERNEL_SOURCES=1
-        lunch twrp_${{ inputs.DEVICE_NAME }}-ap2a-eng && make clean && mka adbd ${{ inputs.BUILD_TARGET }}image
+        export FOX_BUILD_FULL_KERNEL_SOURCES=0
+        lunch twrp_${{ inputs.DEVICE_NAME }}-ap2a-eng && mka adbd ${{ inputs.BUILD_TARGET }}image
 
     - name: Set Release Properties
       run: |
